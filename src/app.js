@@ -1,5 +1,6 @@
 const express = require('express');
 const logger = require('./middleware/logger');
+const fileLogger = require('./middleware/fileLogger'); 
 const { errorHandler } = require('./middleware/errorHandler');
 const routes = require('./routes');
 
@@ -8,6 +9,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(logger);
+app.use(fileLogger);
 
 // Routes
 app.use('/api', routes);
