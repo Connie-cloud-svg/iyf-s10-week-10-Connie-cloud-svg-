@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Connie-cloud-svg/iyf-s10-week-10-Connie-cloud-svg-/issues"
   },
-  "homepage": "https://github.com/Connie-cloud-svg/iyf-s10-week-10-Connie-cloud-svg-#readme"
+  "homepage": "https://github.com/Connie-cloud-svg/iyf-s10-week-10-Connie-cloud-svg-#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
