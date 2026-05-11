@@ -26,4 +26,12 @@ let users = [
 
 let nextUserId = 3;
 
-module.exports = { posts, nextId, users, nextUserId };
+let comments = [
+    { id: 1, postId: 1, author: "Alice", content: "Great intro!", createdAt: "2026-01-15T12:00:00Z" },
+    { id: 2, postId: 1, author: "Bob", content: "Very helpful", createdAt: "2026-01-15T14:30:00Z" },
+    { id: 3, postId: 2, author: "Charlie", content: "Thanks for this", createdAt: "2026-01-16T16:00:00Z" }
+];
+
+let nextCommentId = 4;
+
+module.exports = { posts, nextId, users, nextUserId, comments, nextCommentId };
