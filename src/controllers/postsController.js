@@ -1,22 +1,50 @@
 const store = require('../data/store');
 
 const getAllPosts = (req, res) => {
-    const { author, sort } = req.query;
+    const { author, search, sort, page = 1, limit = 10 } = req.query;
+    
     let result = [...store.posts];
     
+    // Filter by author (partial match, case-insensitive)
     if (author) {
         result = result.filter(post => 
             post.author.toLowerCase().includes(author.toLowerCase())
         );
     }
     
+    // Search in title (partial match, case-insensitive)
+    if (search) {
+        result = result.filter(post => 
+            post.title.toLowerCase().includes(search.toLowerCase())
+        );
+    }
+    
+    // Sort
     if (sort === 'newest') {
         result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     } else if (sort === 'popular') {
         result.sort((a, b) => b.likes - a.likes);
+    } else if (sort === 'oldest') {
+        result.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
     }
     
-    res.json(result);
+    // Pagination
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const startIndex = (pageNum - 1) * limitNum;
+    const endIndex = startIndex + limitNum;
+    const paginatedResults = result.slice(startIndex, endIndex);
+    
+    // Response with metadata
+    res.json({
+        data: paginatedResults,
+        pagination: {
+            total: result.length,
+            page: pageNum,
+            limit: limitNum,
+            totalPages: Math.ceil(result.length / limitNum)
+        }
+    });
 };
 
 const getPostById = (req, res) => {
