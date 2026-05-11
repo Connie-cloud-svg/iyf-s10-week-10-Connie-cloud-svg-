@@ -104,15 +104,4 @@ CommunityHub API is a fully functional RESTful backend server built with Node.js
     Solution: Used `findIndex(c => c.id === commentId && c.postId === postId)` to scope queries. This prevents deleting comments that belong to different posts — a subtle but important security check.  
 
 
-## Project Structure
-```
-iyf-s10-week-10-Connie-cloud-svg-/
-├── src/
-│   ├── routes/          # URL routing definitions
-│   ├── middleware/      # Logger, auth, error handling
-│   ├── controllers/     # Business logic
-│   └── data/            # In-memory data store
-├── logs/                # Request logs (auto-generated)
-├── server.js            # Entry point
-└── package.json         # Dependencies
 
